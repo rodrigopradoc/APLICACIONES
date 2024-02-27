@@ -1,0 +1,235 @@
+/* Estilos básicos y de estructura */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+  }
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  /* Estilos para los productos */
+  .product {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .product:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+  }
+  .product img {
+    width: 50%;
+    height: auto;
+    margin-bottom: 15px;
+  }
+  .product h3, .product p, .product button {
+    text-align: center;
+  }
+  .product h3 {
+    margin-bottom: 10px;
+  }
+  .product p {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+  .product button {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  .product button:hover {
+    background-color: #555;
+  }
+  #cartModal {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    box-sizing: border-box;
+    color: #fff;
+  }
+  
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  
+  
+  
+  .modal-content {
+    font-family: 'Open Sans', sans-serif;
+    background: #fff;
+    width: 40%;
+    border-radius: 8px;
+    overflow: hidden;
+    animation: modalOpen 0.5s ease;
+  }
+
+  .modal-header {
+    background: #f8f8f8;
+    padding: 50px;
+    text-align: center;
+  }
+
+  .modal-header img {
+    width: 100%; /* Adjust as needed */
+  }
+
+  .modal-body {
+    padding: 20px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  
+  .modal-selections {
+    display: flex; /* Utiliza flexbox para alinear los elementos lado a lado */
+    justify-content: space-between; /* Separa los elementos uniformemente */
+    margin: 20px 0;
+  }
+
+
+
+.modal-selections select {
+  width: 48%; /* Ajusta al 48% para dejar espacio para los márgenes */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Arial', sans-serif; /* Elige una fuente más atractiva si es necesario */
+  font-size: 16px; /* Ajusta el tamaño de la fuente si es necesario */
+  font-family: 'Open Sans', sans-serif;
+}
+
+  .modal-footer {
+    background: #f8f8f8;
+    padding: 10px 20px;
+    text-align: right;
+  }
+
+  
+
+  .modal-footer button {
+    padding: 10px 20px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .modal-title {
+    font-family: 'Open Sans', sans-serif; /* Esta es una fuente común, puedes elegir la que prefieras */
+    font-size: 18px; /* Ajusta el tamaño de la fuente según sea necesario */
+    color: #333; /* Ajusta el color del texto según sea necesario */
+    text-align: left; /* Centra el texto */
+    padding: 20px; /* Añade algo de espacio alrededor del texto */
+    margin: 0; /* Elimina los márgenes por defecto */
+    background-color: #f8f8f8; /* Ajusta el color de fondo según sea necesario */
+    border-top-left-radius: 8px; /* Redondea las esquinas superiores del modal */
+    border-top-right-radius: 8px;
+  }
+
+  .carousel {
+    max-width: 80%; /* O el porcentaje que prefieras */
+    margin: auto; /* Esto centrará el carrusel si su ancho es menor que el del contenedor */
+  }
+  .carousel-item {
+    height: 500px; /* Ajusta esto al tamaño que necesites */
+    background-position: center;
+    background-size: cover;
+  }
+  .carousel-item img {
+    height: 100%;
+    object-fit: cover; /* Esto cubrirá el área del contenedor sin perder la relación de aspecto */
+    width: 100%;
+  }
+  
+  .carousel-inner img {
+    width: 100%; /* Esto asegura que la imagen se ajuste al tamaño de .carousel-inner */
+    height: auto; /* Esto mantiene la relación de aspecto de la imagen */
+  }
+
+ 
+  .navbar {
+    background-color: #333; /* El color de fondo de la barra de navegación */
+  }
+  
+  .navbar-brand img {
+    margin-right: 10px;
+  }
+  
+  .navbar-dark .navbar-brand {
+    color: #ffd700; /* El color del texto de la marca */
+    flex-grow: 1; /* Hace que el logo crezca y empuje otros elementos hacia los extremos */
+  }
+  
+  .navbar-nav {
+    flex-grow: 1; /* Hace que los elementos de navegación crezcan y se distribuyan */
+  }
+  
+  .navbar-dark .navbar-nav .nav-link {
+    color: #ffd700; /* El color de los enlaces */
+  }
+  
+  .navbar-collapse {
+    flex-grow: 2; /* Hace que el contenedor central crezca más, ajusta según sea necesario */
+  }
+  
+  /* Ajusta el estilo del botón de búsqueda y otros elementos según sea necesario */
+  .form-control {
+    max-width: 200px; /* Ajusta el ancho del campo de búsqueda */
+  }
+
+  .btn-warning {
+    color: #000;
+    background-color: #ffd700;
+    border-color: #ffd700; /* Estilos para el botón de búsqueda */
+  }
+
+/* Añadir animación */
+@keyframes modalOpen {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Estilos adicionales para el responsive o comportamientos específicos */
+/* Para la versión responsive y comportamientos específicos */
+@media (max-width: 992px) {
+    .navbar-collapse {
+      background-color: #000;
+    }
+  }
