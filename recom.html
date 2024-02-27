@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Productos Relacionados</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  .producto {
+    display: inline-block;
+    width: 150px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  .producto:hover {
+    background-color: #f0f0f0;
+  }
+  .selected {
+    background-color: #f0f0f0;
+  }
+  #productosSeleccionados {
+    margin-top: 20px;
+  }
+  #result {
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+  <h2>Productos Relacionados</h2>
+  <div id="productosContainer">
+
+    <div class="producto" data-producto="Pollo">Pollo</div>
+    <div class="producto" data-producto="Huevos">Huevos</div>
+    <div class="producto" data-producto="Galletas">Galletas</div>
+    <div class="producto" data-producto="Ron">Ron</div>
+    <div class="producto" data-producto="Especias">Especias</div>
+    <div class="producto" data-producto="Soda">Soda</div>
+    
+  </div>
+  <div id="productosSeleccionados">
+    <h3>Productos Seleccionados:</h3>
+    <ul id="selectedList"></ul>
+  </div>
+  <div id="result"></div>
+
+  <script>
+    const productosSeleccionados = new Set();
+
+    function toggleSeleccionado(event) {
+      const producto = event.target.dataset.producto;
+      if (productosSeleccionados.has(producto)) {
+        productosSeleccionados.delete(producto);
+        event.target.classList.remove('selected');
+      } else {
+        productosSeleccionados.add(producto);
+        event.target.classList.add('selected');
+      }
+      actualizarListaSeleccionados();
+      calcularProductosRelacionados();
+    }
+
+    function actualizarListaSeleccionados() {
+      const selectedList = document.getElementById('selectedList');
+      selectedList.innerHTML = '';
+      productosSeleccionados.forEach(producto => {
+        const li = document.createElement('li');
+        li.textContent = producto;
+        selectedList.appendChild(li);
+      });
+    }
+
+    function calcularProductosRelacionados() {
+      const productos = Array.from(productosSeleccionados);
+
+      const productosRelacionados = productoRelacionado(productos);
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "<h3>Productos Recomendados:</h3><ul>";
+      productosRelacionados.forEach(producto => {
+        resultDiv.innerHTML += `<li>${producto}</li>`;
+      });
+      resultDiv.innerHTML += "</ul>";
+    }
+
+    function productoRelacionado(productos) {
+      const relaciones = {
+        "productos_carnicos": ["Carne", "Pollo", "Cerdo"],
+        "productos_desayuno": ["Huevos", "Pan", "Cereal"],
+        "productos_merienda": ["Galletas", "Snacks", "Frutas"],
+        "productos_cocina": ["Aceite de oliva", "Especias", "Salsa"],
+        "licores": ["Whisky", "Vodka", "Ron"],
+        "ingredientes_de_tragos": ["Jugo de limón", "Jarabe de goma", "Soda","Limon"]
+      };
+
+      const categoriasCompradas = [];
+      for (const producto of productos) {
+        for (const categoria in relaciones) {
+          if (relaciones[categoria].includes(producto)) {
+            categoriasCompradas.push(categoria);
+          }
+        }
+      }
+
+      const productosRecomendados = [];
+      const productosElegidos = new Set();
+      for (const categoria of categoriasCompradas) {
+        const productosDisponibles = relaciones[categoria].filter(item => !productos.includes(item));
+        if (productosDisponibles.length > 0) {
+          let i = 0;
+          while (i < Math.min(3, productosDisponibles.length) && productosElegidos.size < 3) {
+            const randomIndex = Math.floor(Math.random() * productosDisponibles.length);
+            const productoElegido = productosDisponibles[randomIndex];
+            if (!productosElegidos.has(productoElegido)) {
+              productosRecomendados.push(productoElegido);
+              productosElegidos.add(productoElegido);
+              i++;
+            }
+            productosDisponibles.splice(randomIndex, 1);
+          }
+        }
+      }
+
+      return productosRecomendados;
+    }
+
+    const productos = document.querySelectorAll('.producto');
+    productos.forEach(producto => {
+      producto.addEventListener('click', toggleSeleccionado);
+    });
+  </script>
+</body>
+</html>

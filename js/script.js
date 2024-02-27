@@ -31,20 +31,36 @@ const relacionProductos = {
   }
   
   function agregarAlCarrito(producto) {
-    // Implementación de la función
     const cartList = document.getElementById("cartList");
-    const li = document.createElement("li");
-    li.textContent = producto;
-    cartList.appendChild(li);
+    let item = document.querySelector(`#cartList li[data-producto="${producto}"]`);
+    if (!item) {
+      item = document.createElement("li");
+      item.textContent = producto;
+      item.setAttribute('data-producto', producto);
+      cartList.appendChild(item);
+    }
   }
-  
-  function mostrarCarrito() {
-    // Implementación de la función
+
+  function cerrarCarrito() {
     const cartModal = document.getElementById("cartModal");
-    cartModal.style.display = "block";
-    mostrarProductoRecomendado();
+    cartModal.style.display = "none";
   }
   
+  
+function mostrarCarrito() {
+  const cartModal = document.getElementById("cartModal");
+  cartModal.style.display = "block";
+  actualizarCheckboxes();
+  mostrarProductoRecomendado();
+}
+ 
+function actualizarCheckboxes() {
+  const productosEnCarrito = Array.from(document.querySelectorAll('#cartList li')).map(li => li.getAttribute('data-producto'));
+  document.querySelectorAll('input[type="checkbox"][name="producto"]').forEach(checkbox => {
+    checkbox.checked = productosEnCarrito.includes(checkbox.value);
+  });
+}
+
   function mostrarProductoRecomendado() {
     // Implementación de la función
     const productosEnCarrito = Array.from(document.querySelectorAll('#cartList li')).map(li => li.textContent);
@@ -70,4 +86,26 @@ const relacionProductos = {
   }
 
   // Asegúrate de que el resto de tu código JavaScript esté debajo de estas funciones
+  document.querySelectorAll('input[type="checkbox"][name="producto"]').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      manejarSeleccionProducto(this.value, this.dataset.precio, this.checked);
+    });
+  });
+  
+  function manejarSeleccionProducto(nombre, precio, estaSeleccionado) {
+    if (estaSeleccionado) {
+      agregarAlCarrito(nombre);
+    } else {
+      quitarDelCarrito(nombre);
+    }
+    mostrarCarrito();
+  }
+  
+  function quitarDelCarrito(producto) {
+    // Encuentra y elimina el producto de la lista del carrito
+    let item = document.querySelector(`#cartList li[data-producto="${producto}"]`);
+    if (item) {
+      document.getElementById("cartList").removeChild(item);
+    }
+  }
   

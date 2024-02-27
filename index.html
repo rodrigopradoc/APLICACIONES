@@ -71,71 +71,92 @@
 <header>
   <h1>Mi Bodega</h1>
 </header>
+
 <div class="container">
   <div class="product">
     <img src="imagenes/arroz.jpg" alt="Arroz">
     <h3>Arroz</h3>
     <p>Precio: $10</p>
-    <button onclick="comprar('Arroz', 10)">Comprar</button>
+    <label>
+      <input type="checkbox" name="producto" value="Arroz" data-precio="10"> Comprar
+    </label>
   </div>
   <!-- Repite la estructura anterior para cada producto -->
   <div class="product">
     <img src="imagenes/aceite.jpg" alt="Aceite de Oliva">
     <h3>Aceite de Oliva</h3>
     <p>Precio: $15</p>
-    <button onclick="comprar('Aceite de Oliva', 15)">Comprar</button>
+    <label>
+      <input type="checkbox" name="producto" value="Aceite de Oliva" data-precio="10"> Comprar
+    </label>
   </div>
   
   <div class="product">
     <img src="imagenes/galletas.jpg" alt="Galletas">
     <h3>Galletas</h3>
     <p>Precio: $8</p>
-    <button onclick="comprar('Galletas', 8)">Comprar</button>
+    <label>
+      <input type="checkbox" name="producto" value="Galletas" data-precio="10"> Comprar
+    </label>
   </div>
   <div class="product">
     <img src="imagenes/papas_fritas.jpg" alt="Papas Fritas">
     <h3>Papas Fritas</h3>
     <p>Precio: $6</p>
-    <button onclick="comprar('Papas Fritas', 6)">Comprar</button>
+    <label>
+      <input type="checkbox" name="producto" value="Papas Fritas" data-precio="10"> Comprar
+    </label>
   </div>
   
   <div class="product">
     <img src="imagenes/pan.jpg" alt="Pan">
     <h3>Pan</h3>
     <p>Precio: $5</p>
-    <button onclick="comprar('Pan', 5)">Comprar</button>
+    <label>
+      <input type="checkbox" name="producto" value="Pan" data-precio="10"> Comprar
+    </label>
   </div>
   <div class="product">
     <img src="imagenes/leche.jpg" alt="Leche">
     <h3>Leche</h3>
     <p>Precio: $4</p>
-    <button onclick="comprar('Leche', 4)">Comprar</button>
+    <label>
+      <input type="checkbox" name="producto" value="Leche" data-precio="10"> Comprar
+    </label>
   </div>
   
   <div class="product">
     <img src="imagenes/whisky.jpg" alt="Whisky">
     <h3>Whisky</h3>
     <p>Precio: $20</p>
-    <button onclick="comprar('Whisky', 20)">Comprar</button>
+    <label>
+      <input type="checkbox" name="producto" value="Whisky" data-precio="10"> Comprar
+    </label>
   </div>
   <div class="product">
     <img src="imagenes/vodka.jpg" alt="Vodka">
     <h3>Vodka</h3>
     <p>Precio: $18</p>
-    <button onclick="comprar('Vodka', 18)">Comprar</button>
+    <label>
+      <input type="checkbox" name="producto" value="Vodka" data-precio="10"> Comprar
+    </label>
   </div>
   
   <div class="product">
     <img src="imagenes/limon.jpg" alt="Jugo de Limón">
     <h3>Jugo de Limón</h3>
     <p>Precio: $3</p>
-    <button onclick="comprar('Jugo de Limón', 3)">Comprar</button>
+    <label>
+      <input type="checkbox" name="producto" value="Jugo de Limón" data-precio="10"> Comprar
+    </label>
   </div>
   <div class="product">
     <img src="imagenes/menta.jpg" alt="Sirope de Menta">
     <h3>Sirope de Menta</h3>
     <p>Precio: $5</p>
-    <button onclick="comprar('Sirope de Menta', 5)">Comprar</button>
+    <label>
+      <input type="checkbox" name="producto" value="Sirope de Menta" data-precio="10"> Comprar
+    </label>
   </div>
 </div>
 
@@ -169,12 +190,13 @@
     </div>
   </div>
   
-<div id="cartModal">
-  <h2>Productos en el Carrito:</h2>
-  <ul id="cartList"></ul>
-  <h2>Producto Recomendado:</h2>
-  <p id="recommendedProduct"></p>
-</div>
+  <div id="cartModal">
+    <button id="closeCart" onclick="cerrarCarrito()">X</button>
+    <h2>Productos en el Carrito:</h2>
+    <ul id="cartList"></ul>
+    <h2>Producto Recomendado:</h2>
+    <p id="recommendedProduct"></p>
+  </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
